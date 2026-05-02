@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - NeuroFocus</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
+        .container{max-width:1000px;margin:0 auto;padding:20px}
+        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
+        .btn-primary{background:#2196F3;color:white}
+        nav{background:#2196F3;padding:15px;color:white}
+    </style>
+</head>
+<body>
+<nav>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>NeuroFocus - Panel Admin</h2>
+        <form action="/logout" method="post">
+            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Panel de Administración</h1>
+    
+    <div class="card">
+        <h3>Gestión de Especialistas</h3>
+        <a href="/admin/especialistas" class="btn btn-primary">Administrar Psicólogos</a>
+    </div>
+    
+    <div class="card">
+        <h3>Métricas Globales</h3>
+        <a href="/admin/metricas" class="btn btn-primary">Ver Reportes</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Panel - NeuroFocus</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
+        .container{max-width:800px;margin:0 auto;padding:20px}
+        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
+        .btn-primary{background:#2196F3;color:white}
+        .btn-danger{background:#f44336;color:white}
+        nav{background:#2196F3;padding:15px;color:white}
+    </style>
+</head>
+<body>
+<nav>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>NeuroFocus</h2>
+        <form action="/logout" method="post">
+            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Bienvenido, <span th:text="${usuario.nombre}"></span></h1>
+    
+    <div class="card">
+        <h3>Evaluación Emocional</h3>
+        <p>Realiza tu evaluación actualizada</p>
+        <a href="/" class="btn btn-primary">Tomar encuesta</a>
+    </div>
+    
+    <div class="card">
+        <h3>Botón de Pánico</h3>
+        <p>Si necesitas ayuda inmediata, presiona este botón</p>
+        <a href="/panico" class="btn btn-danger">¡Necesito ayuda!</a>
+    </div>
+    
+    <div class="card">
+        <h3>Catálogo de Psicólogos</h3>
+        <p>Elige a tu especialista de confianza</p>
+        <a href="/catalogo" class="btn btn-primary">Ver psicólogos</a>
+    </div>
+</div>
+</body>
+</html>

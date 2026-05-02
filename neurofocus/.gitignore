@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Base de datos H2 #
+data/
+*.db
+*.mv.db
+*.trace.db
+
 ### STS ###
 .apt_generated
 .classpath
@@ -30,4 +36,13 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
+.idea/
+*.iml
 .vscode/
+
+*.class
+
+# Logs
+*.log
+target/
+
