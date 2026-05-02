@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Login')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="card" style="max-width:400px;margin:auto">
+        <h2>Iniciar Sesión</h2>
+        <form action="/login" method="post">
+            <input type="email" name="username" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+        <p>¿No tienes cuenta? <a href="/registro">Regístrate</a></p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

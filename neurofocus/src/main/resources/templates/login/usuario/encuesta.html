@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Encuesta')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <h1>Evaluación Emocional</h1>
+    <form action="/procesar-encuesta" method="post">
+        <div th:each="p,stat : ${preguntas}" class="card">
+            <strong th:text="${stat.index+1}+'. '+p.texto"></strong><br>
+            <label>1<input type="radio" th:name="'pregunta_'+${stat.index}" value="1" required></label>
+            <label>2<input type="radio" th:name="'pregunta_'+${stat.index}" value="2"></label>
+            <label>3<input type="radio" th:name="'pregunta_'+${stat.index}" value="3"></label>
+            <label>4<input type="radio" th:name="'pregunta_'+${stat.index}" value="4"></label>
+            <label>5<input type="radio" th:name="'pregunta_'+${stat.index}" value="5"></label>
+        </div>
+        <button type="submit" class="btn btn-primary">Ver Resultado</button>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

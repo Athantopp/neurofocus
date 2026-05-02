@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Registro')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="card" style="max-width:500px;margin:auto">
+        <h2>Crear Cuenta</h2>
+        <form action="/registro" method="post">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <select name="rol">
+                <option value="PACIENTE">Paciente</option>
+                <option value="PSICOLOGO">Especialista</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+        <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

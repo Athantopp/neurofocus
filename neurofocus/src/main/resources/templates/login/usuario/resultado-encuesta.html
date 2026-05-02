@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Resultado')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="card" style="text-align:center">
+        <h2>Nivel de Riesgo: <strong th:text="${nivelRiesgo}"></strong></h2>
+        <p>Posible causa: <strong th:text="${posibleCausa}"></strong></p>
+        <ul>
+            <li>Estrés: <strong th:text="${porcentajeEstres}"></strong>%</li>
+            <li>Ansiedad: <strong th:text="${porcentajeAnsiedad}"></strong>%</li>
+            <li>Depresión: <strong th:text="${porcentajeDepresion}"></strong>%</li>
+        </ul>
+        <a href="/registro" class="btn btn-success"> Registrarme para recibir ayuda</a>
+        <a href="/" class="btn btn-primary">Volver a tomar encuesta</a>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
