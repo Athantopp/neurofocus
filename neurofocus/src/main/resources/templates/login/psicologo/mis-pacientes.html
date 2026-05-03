@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Pacientes - NeuroFocus</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
+        .container{max-width:1000px;margin:0 auto;padding:20px}
+        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
+        .btn-primary{background:#2196F3;color:white}
+        .btn-success{background:#4CAF50;color:white}
+        nav{background:#2196F3;padding:15px;color:white}
+        footer{text-align:center;margin-top:50px;padding:20px;background:#f0f0f0}
+        table{width:100%;border-collapse:collapse}
+        th,td{padding:10px;text-align:left;border-bottom:1px solid #ddd}
+        .sin-pacientes{text-align:center;color:#999;padding:20px}
+    </style>
+</head>
+<body>
+<nav>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>NeuroFocus - Mis Pacientes</h2>
+        <form action="/logout" method="post">
+            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Mis Pacientes</h1>
+    <p>Lista de pacientes que te han seleccionado como su psicólogo</p>
+    
+    <div class="card">
+        <h3>Pacientes asignados (<span th:text="${pacientes.size()}"></span>)</h3>
+        
+        <div th:if="${pacientes.empty}" class="sin-pacientes">
+            <p>Aún no tienes pacientes asignados.</p>
+            <p>Los pacientes que te seleccionen aparecerán aquí.</p>
+        </div>
+        
+        <table th:if="${!pacientes.empty}">
+            <thead>
+                <tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Desde</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="paciente : ${pacientes}">
+                    <td th:text="${paciente.usuario.nombre}"></td>
+                    <td th:text="${paciente.usuario.email}"></td>
+                    <td th:text="${paciente.telefono}"></td>
+                    <td th:text="${#temporals.format(paciente.usuario.fechaRegistro, 'dd/MM/yyyy')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <a href="/psicologo/dashboard" class="btn btn-success">Volver a mi panel</a>
+</div>
+
+<footer>
+    <p>NeuroFocus - Plataforma de apoyo emocional</p>
+</footer>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Panel del Psicólogo - NeuroFocus</title>
+    <title>Panel Psicólogo - NeuroFocus</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
@@ -11,6 +11,7 @@
         .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
         .btn-primary{background:#2196F3;color:white}
         nav{background:#2196F3;padding:15px;color:white}
+        footer{text-align:center;margin-top:50px;padding:20px;background:#f0f0f0}
         table{width:100%;border-collapse:collapse}
         th,td{padding:10px;text-align:left;border-bottom:1px solid #ddd}
     </style>
@@ -26,34 +27,29 @@
 </nav>
 
 <div class="container">
-    <h1>Bienvenido, Doctor/a</h1>
+    <h1>Bienvenido, Dr. <span th:text="${psicologo != null ? psicologo.usuario.nombre : ''}"></span></h1>
     
     <div class="card">
         <h3>👥 Mis Pacientes</h3>
-        <p>Aquí aparecerán los pacientes que te han seleccionado</p>
-        <table>
-            <thead>
-                <tr><th>Nombre</th><th>Email</th><th>Última Evaluación</th></tr>
-            </thead>
-            <tbody>
-                <tr><td colspan="3" style="text-align:center">Aún no tienes pacientes asignados</td></tr>
-            </tbody>
-        </table>
+        <p>Pacientes que te han seleccionado como su psicólogo de confianza</p>
+        <a href="/psicologo/mis-pacientes" class="btn btn-primary">Ver mis pacientes</a>
     </div>
     
     <div class="card">
-        <h3>Alertas de Pánico</h3>
-        <p>Las alertas de tus pacientes aparecerán aquí</p>
-        <table>
-            <thead><tr><th>Paciente</th><th>Fecha</th><th>Estado</th></tr></thead>
-            <tbody><tr><td colspan="3" style="text-align:center">No hay alertas recientes</td></tr></tbody>
-        </table>
+        <h3>🚨 Alertas de Pánico</h3>
+        <p>Historial de alertas recibidas</p>
+        <a href="#" class="btn btn-primary">Próximamente</a>
     </div>
     
     <div class="card">
-        <h3>Métricas</h3>
-        <a href="/psicologo/metricas" class="btn btn-primary">Ver reportes</a>
+        <h3>📊 Mis Métricas</h3>
+        <p>Reportes y estadísticas de tus pacientes</p>
+        <a href="#" class="btn btn-primary">Próximamente</a>
     </div>
 </div>
+
+<footer>
+    <p>NeuroFocus - Plataforma de apoyo emocional</p>
+</footer>
 </body>
 </html>
