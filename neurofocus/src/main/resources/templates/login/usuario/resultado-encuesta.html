@@ -3,19 +3,37 @@
 <head th:replace="fragments/header :: header('Resultado')"></head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-<div class="container">
-    <div class="card" style="text-align:center">
-        <h2>Nivel de Riesgo: <strong th:text="${nivelRiesgo}"></strong></h2>
-        <p>Posible causa: <strong th:text="${posibleCausa}"></strong></p>
-        <ul>
-            <li>Estrés: <strong th:text="${porcentajeEstres}"></strong>%</li>
-            <li>Ansiedad: <strong th:text="${porcentajeAnsiedad}"></strong>%</li>
-            <li>Depresión: <strong th:text="${porcentajeDepresion}"></strong>%</li>
-        </ul>
-        <a href="/registro" class="btn btn-success"> Registrarme para recibir ayuda</a>
-        <a href="/" class="btn btn-primary">Volver a tomar encuesta</a>
+
+<div class="container-md">
+    <div class="card result-card">
+        <p class="text-muted" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;">Tu resultado</p>
+        <div class="result-level" th:text="${nivelRiesgo}"></div>
+        <p style="color:var(--text-muted);font-size:0.92rem;">
+            Posible causa: <strong th:text="${posibleCausa}" style="color:var(--text);"></strong>
+        </p>
+
+        <div class="result-stats">
+            <div class="stat-item">
+                <div class="stat-value" th:text="${porcentajeEstres} + '%'"></div>
+                <div class="stat-label">Estrés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" th:text="${porcentajeAnsiedad} + '%'"></div>
+                <div class="stat-label">Ansiedad</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" th:text="${porcentajeDepresion} + '%'"></div>
+                <div class="stat-label">Depresión</div>
+            </div>
+        </div>
+
+        <div class="result-actions">
+            <a href="/registro" class="btn btn-primary">Regístrate para recibir ayuda</a>
+            <a href="/" class="btn btn-secondary">Volver a tomar encuesta</a>
+        </div>
     </div>
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

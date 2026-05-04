@@ -2,49 +2,60 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Psicólogos</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
-        .container{max-width:1000px;margin:0 auto;padding:20px}
-        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
-        .btn-primary{background:#2196F3;color:white}
-        .btn-success{background:#4CAF50;color:white}
-        nav{background:#2196F3;padding:15px;color:white}
-        footer{text-align:center;margin-top:50px;padding:20px;background:#f0f0f0}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de psicólogos — NeuroFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-        <h2>NeuroFocus</h2>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <span class="nav-brand">NeuroFocus</span>
         <form action="/logout" method="post">
-            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
         </form>
     </div>
 </nav>
 
-<div class="container">
-    <h1>Catálogo de Psicólogos</h1>
-    <p>Elige a tu especialista de confianza</p>
-    
-    <div th:each="psicologo : ${psicologos}" class="card">
-        <h3 th:text="${psicologo.usuario.nombre}"></h3>
-        <p><strong>Especialidad:</strong> <span th:text="${psicologo.especialidad}"></span></p>
-        <p><strong>Horario:</strong> <span th:text="${psicologo.horarioAtencion}"></span></p>
-        <p><strong>Modalidad:</strong> <span th:text="${psicologo.modalidad}"></span></p>
-        
-        <form th:action="@{/paciente/asignar-psicologo/{id}(id=${psicologo.id})}" method="post">
+<div class="container-md">
+    <div style="margin-bottom: 28px;">
+        <h1>Catálogo de psicólogos</h1>
+        <p class="page-subtitle">Elige al especialista que mejor se adapte a tus necesidades</p>
+    </div>
+
+    <div th:each="psicologo : ${psicologos}" class="card" style="margin-bottom:16px;">
+        <div class="card-header">
+            <h3 th:text="${psicologo.usuario.nombre}"></h3>
+        </div>
+        <div class="detail-list">
+            <div class="detail-row">
+                <span class="detail-key">Especialidad</span>
+                <span class="detail-val" th:text="${psicologo.especialidad}"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-key">Horario</span>
+                <span class="detail-val" th:text="${psicologo.horarioAtencion}"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-key">Modalidad</span>
+                <span class="detail-val" th:text="${psicologo.modalidad}"></span>
+            </div>
+        </div>
+        <form th:action="@{/paciente/asignar-psicologo/{id}(id=${psicologo.id})}" method="post" style="margin-top:16px;">
             <button type="submit" class="btn btn-primary">Seleccionar este psicólogo</button>
         </form>
     </div>
-    
-    <a href="/dashboard-redirect" class="btn btn-success">Volver a mi panel</a>
+
+    <div style="margin-top: 8px;">
+        <a href="/dashboard-redirect" class="btn btn-secondary">Volver a mi panel</a>
+    </div>
 </div>
 
-<footer>
-    <p>NeuroFocus - Si estás en crisis llama al 911</p>
+<footer class="footer">
+    <p>NeuroFocus &mdash; Si estás en crisis llama al 911</p>
 </footer>
 </body>
 </html>

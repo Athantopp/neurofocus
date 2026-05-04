@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis citas — NeuroFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <span class="nav-brand">NeuroFocus</span>
+        <form action="/logout" method="post">
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:12px;">
+        <div>
+            <h1>Mis citas</h1>
+            <p class="page-subtitle">Gestiona tus próximas sesiones</p>
+        </div>
+        <a href="/cita/agendar" class="btn btn-primary">Nueva cita</a>
+    </div>
+
+    <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <div class="card">
+        <div th:if="${citas.empty}" class="empty-state">
+            <p>No tienes citas agendadas.</p>
+            <a href="/cita/agendar" class="btn btn-primary" style="margin-top:16px;">Agendar tu primera cita</a>
+        </div>
+
+        <div th:if="${!citas.empty}" class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha y hora</th>
+                        <th>Psicólogo</th>
+                        <th>Modalidad</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cita : ${citas}">
+                        <td th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+                        <td th:text="${cita.especialista.usuario.nombre}"></td>
+                        <td th:text="${cita.modalidad}"></td>
+                        <td>
+                            <span th:text="${cita.estado}"
+                                  th:class="${cita.estado == 'CANCELADA'} ? 'text-cancelled' : ''">
+                            </span>
+                        </td>
+                        <td>
+                            <form th:if="${cita.estado == 'AGENDADA'}"
+                                  th:action="@{/cita/cancelar/{id}(id=${cita.id})}"
+                                  method="post" style="display:inline">
+                                <button type="submit" class="btn btn-danger" style="padding:5px 12px;font-size:0.82rem;">Cancelar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="margin-top:8px;">
+        <a href="/dashboard-redirect" class="btn btn-secondary">Volver a mi panel</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>NeuroFocus &mdash; Si estás en crisis llama al 911</p>
+</footer>
+</body>
+</html>

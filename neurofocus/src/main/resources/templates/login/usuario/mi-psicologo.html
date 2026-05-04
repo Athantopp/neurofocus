@@ -2,64 +2,81 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Mi Psicólogo</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
-        .container{max-width:600px;margin:0 auto;padding:20px}
-        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
-        .btn-primary{background:#2196F3;color:white}
-        .btn-danger{background:#f44336;color:white}
-        .btn-success{background:#4CAF50;color:white}
-        nav{background:#2196F3;padding:15px;color:white}
-        footer{text-align:center;margin-top:50px;padding:20px;background:#f0f0f0}
-        .alerta{background:#d4edda;color:#155724;padding:10px;border-radius:5px;margin:10px 0}
-        .error{background:#f8d7da;color:#721c24;padding:10px;border-radius:5px;margin:10px 0}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi psicólogo — NeuroFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-        <h2>NeuroFocus</h2>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <span class="nav-brand">NeuroFocus</span>
         <form action="/logout" method="post">
-            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
         </form>
     </div>
 </nav>
 
-<div class="container">
-    <h1>Mi Psicólogo</h1>
-    
-    <div th:if="${session.mensaje}" class="alerta" th:text="${session.mensaje}"></div>
-    <div th:if="${session.error}" class="error" th:text="${session.error}"></div>
-    
-    <div th:if="${paciente.especialistaAsignado != null}" class="card">
-        <h3 th:text="${paciente.especialistaAsignado.usuario.nombre}"></h3>
-        <p><strong>Especialidad:</strong> <span th:text="${paciente.especialistaAsignado.especialidad}"></span></p>
-        <p><strong>Horario:</strong> <span th:text="${paciente.especialistaAsignado.horarioAtencion}"></span></p>
-        <p><strong>Modalidad:</strong> <span th:text="${paciente.especialistaAsignado.modalidad}"></span></p>
-        <p><strong>Teléfono:</strong> <span th:text="${paciente.especialistaAsignado.telefono}"></span></p>
-        
-        <hr style="margin: 20px 0">
-        
-        <h3 style="color:#f44336">Botón de Pánico</h3>
-        <p>Si estás en crisis y necesitas ayuda inmediata, presiona este botón.</p>
-        <form action="/paciente/panico" method="post">
-            <button type="submit" class="btn btn-danger">¡Necesito ayuda ahora!</button>
-        </form>
+<div class="container-md">
+    <div style="margin-bottom: 28px;">
+        <h1>Mi psicólogo</h1>
+        <p class="page-subtitle">Información de tu especialista asignado</p>
     </div>
-    
+
+    <div th:if="${session.mensaje}" class="alert alert-success" th:text="${session.mensaje}"></div>
+    <div th:if="${session.error}" class="alert alert-danger" th:text="${session.error}"></div>
+
+    <div th:if="${paciente.especialistaAsignado != null}">
+        <div class="card">
+            <div class="card-header">
+                <h2 th:text="${paciente.especialistaAsignado.usuario.nombre}"></h2>
+            </div>
+            <div class="detail-list">
+                <div class="detail-row">
+                    <span class="detail-key">Especialidad</span>
+                    <span class="detail-val" th:text="${paciente.especialistaAsignado.especialidad}"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-key">Horario</span>
+                    <span class="detail-val" th:text="${paciente.especialistaAsignado.horarioAtencion}"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-key">Modalidad</span>
+                    <span class="detail-val" th:text="${paciente.especialistaAsignado.modalidad}"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-key">Teléfono</span>
+                    <span class="detail-val" th:text="${paciente.especialistaAsignado.telefono}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="panic-section">
+            <h4>Botón de pánico</h4>
+            <p>Si estás en una situación de crisis y necesitas ayuda inmediata, presiona el botón.</p>
+            <form action="/paciente/panico" method="post">
+                <button type="submit" class="btn-panic">Necesito ayuda ahora</button>
+            </form>
+        </div>
+    </div>
+
     <div th:if="${paciente.especialistaAsignado == null}" class="card">
-        <p style="color:#f44336">Aún no tienes un psicólogo asignado.</p>
-        <a href="/paciente/catalogo" class="btn btn-primary">Ver catálogo de psicólogos</a>
+        <div class="empty-state">
+            <p>Aún no tienes un psicólogo asignado.</p>
+            <a href="/paciente/catalogo" class="btn btn-primary" style="margin-top:16px;">Ver catálogo de psicólogos</a>
+        </div>
     </div>
-    
-    <a href="/dashboard-redirect" class="btn btn-success">Volver a mi panel</a>
+
+    <div style="margin-top: 20px;">
+        <a href="/dashboard-redirect" class="btn btn-secondary">Volver a mi panel</a>
+    </div>
 </div>
 
-<footer>
-    <p>NeuroFocus - Si estás en crisis llama al 911</p>
+<footer class="footer">
+    <p>NeuroFocus &mdash; Si estás en crisis llama al 911 o a la Línea de la Vida: 800 911 2000</p>
 </footer>
 </body>
 </html>

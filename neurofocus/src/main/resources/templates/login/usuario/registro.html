@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Registro')"></head>
+<head th:replace="fragments/header :: header('Crear cuenta')"></head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-<div class="container">
-    <div class="card" style="max-width:500px;margin:auto">
-        <h2>Crear Cuenta</h2>
-        <form action="/registro" method="post">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <select name="rol">
-                <option value="PACIENTE">Paciente</option>
-                <option value="PSICOLOGO">Especialista</option>
-            </select>
-            <button type="submit" class="btn btn-primary">Registrarse</button>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+
+<div class="container-sm">
+    <div style="margin-bottom: 28px;">
+        <h1>Crear cuenta</h1>
+        <p class="page-subtitle">Completa el formulario para comenzar</p>
     </div>
+
+    <div class="card">
+        <form action="/registro" method="post">
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" placeholder="tu@correo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" placeholder="Elige una contraseña" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo de cuenta</label>
+                <select name="rol">
+                    <option value="PACIENTE">Paciente</option>
+                    <option value="PSICOLOGO">Especialista</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:4px;">Crear cuenta</button>
+        </form>
+    </div>
+
+    <p class="text-center text-muted mt-4">
+        ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
+    </p>
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

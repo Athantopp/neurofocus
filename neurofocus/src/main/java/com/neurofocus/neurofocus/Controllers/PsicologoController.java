@@ -58,7 +58,7 @@ public class PsicologoController {
         
         System.out.println("Usuario ID: " + usuario.getId());
         
-        //  IMPORTANtisimoooooo buscar por usuario_id, NO por id
+        //  IMPORTANtisimoooooo buscar por usuario_id, NO por IDDDDD
         Especialista psicologo = especialistaRepository.findByUsuarioId(usuario.getId());
         
         if (psicologo == null) {

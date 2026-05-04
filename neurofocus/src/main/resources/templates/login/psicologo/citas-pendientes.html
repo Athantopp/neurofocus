@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis pacientes — NeuroFocus</title>
+    <title>Mis citas — NeuroFocus</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,35 +22,31 @@
 
 <div class="container">
     <div style="margin-bottom: 28px;">
-        <h1>Mis pacientes</h1>
-        <p class="page-subtitle">
-            Pacientes asignados:
-            <span th:text="${pacientes.size()}"></span>
-        </p>
+        <h1>Mis citas</h1>
+        <p class="page-subtitle">Citas agendadas contigo</p>
     </div>
 
     <div class="card">
-        <div th:if="${pacientes.empty}" class="empty-state">
-            <p>Aún no tienes pacientes asignados.</p>
-            <p style="margin-top:6px;">Los pacientes que te seleccionen aparecerán aquí.</p>
+        <div th:if="${citas.empty}" class="empty-state">
+            <p>No tienes citas agendadas.</p>
         </div>
 
-        <div th:if="${!pacientes.empty}" class="table-wrap">
+        <div th:if="${!citas.empty}" class="table-wrap">
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Desde</th>
+                        <th>Fecha y hora</th>
+                        <th>Paciente</th>
+                        <th>Modalidad</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="paciente : ${pacientes}">
-                        <td th:text="${paciente.usuario.nombre}"></td>
-                        <td th:text="${paciente.usuario.email}"></td>
-                        <td th:text="${paciente.telefono}"></td>
-                        <td th:text="${#temporals.format(paciente.usuario.fechaRegistro, 'dd/MM/yyyy')}"></td>
+                    <tr th:each="cita : ${citas}">
+                        <td th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+                        <td th:text="${cita.paciente.usuario.nombre}"></td>
+                        <td th:text="${cita.modalidad}"></td>
+                        <td th:text="${cita.estado}"></td>
                     </tr>
                 </tbody>
             </table>

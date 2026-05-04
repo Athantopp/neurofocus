@@ -2,66 +2,69 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Mi Panel - NeuroFocus</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',sans-serif;background:#f5f5f5}
-        .container{max-width:1000px;margin:0 auto;padding:20px}
-        .card{background:white;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-        .btn{display:inline-block;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;text-decoration:none}
-        .btn-primary{background:#2196F3;color:white}
-        .btn-danger{background:#f44336;color:white}
-        .btn-success{background:#4CAF50;color:white}
-        nav{background:#2196F3;padding:15px;color:white}
-        footer{text-align:center;margin-top:50px;padding:20px;background:#f0f0f0}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi panel — NeuroFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-        <h2>NeuroFocus</h2>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <span class="nav-brand">NeuroFocus</span>
         <form action="/logout" method="post">
-            <button type="submit" style="background:red;color:white;border:none;padding:5px 10px">Cerrar Sesión</button>
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
         </form>
     </div>
 </nav>
 
 <div class="container">
     <h1>Bienvenido, <span th:text="${usuario.nombre}"></span></h1>
-    
-    <div class="card">
-        <h3>Evaluación Emocional</h3>
-        <p>Realiza tu evaluación actualizada</p>
-        <a href="/" class="btn btn-primary">Tomar encuesta</a>
-    </div>
-    
-    <div class="card">
-        <h3>Catálogo de Psicólogos</h3>
-        <p>Elige a tu especialista de confianza</p>
-        <a href="/paciente/catalogo" class="btn btn-primary">Ver psicólogos</a>
-    </div>
-    
-    <div class="card">
-        <h3>Mi Psicólogo</h3>
-        <p>Ver información de tu psicólogo y botón de pánico</p>
-        <a href="/paciente/mi-psicologo" class="btn btn-primary">Ir a mi psicólogo</a>
-    </div>
-    
-    <div class="card">
-        <h3>Mis Citas</h3>
-        <p>Agenda y gestión de citas</p>
-        <a href="#" class="btn btn-primary">Próximamente</a>
-    </div>
-    
-    <div class="card">
-        <h3>Mi Historial</h3>
-        <p>Ver resultados de evaluaciones anteriores</p>
-        <a href="#" class="btn btn-primary">Próximamente</a>
+    <p class="page-subtitle">¿En qué te podemos ayudar hoy?</p>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h3>Evaluación emocional</h3>
+            <p>Realiza tu evaluación y conoce tu estado actual</p>
+            <a href="/" class="btn btn-primary mt-4">Tomar encuesta</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Catálogo de psicólogos</h3>
+            <p>Elige a tu especialista de confianza</p>
+            <a href="/paciente/catalogo" class="btn btn-primary mt-4">Ver psicólogos</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Mi psicólogo</h3>
+            <p>Información de tu psicólogo asignado y botón de pánico</p>
+            <a href="/paciente/mi-psicologo" class="btn btn-primary mt-4">Ver mi psicólogo</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Agendar cita</h3>
+            <p>Programa una nueva sesión con tu especialista</p>
+            <a href="/cita/agendar" class="btn btn-primary mt-4">Agendar</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Mis citas</h3>
+            <p>Consulta y gestiona tus citas próximas</p>
+            <a href="/cita/mis-citas" class="btn btn-primary mt-4">Ver citas</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Mi historial</h3>
+            <p>Resultados de evaluaciones anteriores</p>
+            <a href="#" class="btn btn-secondary mt-4">Próximamente</a>
+        </div>
     </div>
 </div>
 
-<footer>
-    <p>NeuroFocus - Si estás en crisis llama al 911</p>
+<footer class="footer">
+    <p>NeuroFocus &mdash; Si estás en crisis llama al 911 o a la Línea de la Vida: 800 911 2000</p>
 </footer>
 </body>
 </html>

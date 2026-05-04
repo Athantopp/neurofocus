@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Encuesta')"></head>
+<head th:replace="fragments/header :: header('Evaluación emocional')"></head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-<div class="container">
-    <h1>Evaluación Emocional</h1>
+
+<div class="container-md">
+    <div style="margin-bottom: 28px;">
+        <h1>Evaluación emocional</h1>
+        <p class="page-subtitle">Responde con honestidad. Tus respuestas son confidenciales.</p>
+    </div>
+
     <form action="/procesar-encuesta" method="post">
         <div th:each="p,stat : ${preguntas}" class="card">
-            <strong th:text="${stat.index+1}+'. '+p.texto"></strong><br>
-            <label>1<input type="radio" th:name="'pregunta_'+${stat.index}" value="1" required></label>
-            <label>2<input type="radio" th:name="'pregunta_'+${stat.index}" value="2"></label>
-            <label>3<input type="radio" th:name="'pregunta_'+${stat.index}" value="3"></label>
-            <label>4<input type="radio" th:name="'pregunta_'+${stat.index}" value="4"></label>
-            <label>5<input type="radio" th:name="'pregunta_'+${stat.index}" value="5"></label>
+            <p style="font-weight:500; margin-bottom:14px;">
+                <span th:text="${stat.index + 1}" style="color:var(--text-muted);"></span>.
+                <span th:text="${p.texto}"></span>
+            </p>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" th:name="'pregunta_'+${stat.index}" value="1" required>
+                    <span class="radio-label">1</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" th:name="'pregunta_'+${stat.index}" value="2">
+                    <span class="radio-label">2</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" th:name="'pregunta_'+${stat.index}" value="3">
+                    <span class="radio-label">3</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" th:name="'pregunta_'+${stat.index}" value="4">
+                    <span class="radio-label">4</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" th:name="'pregunta_'+${stat.index}" value="5">
+                    <span class="radio-label">5</span>
+                </label>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Ver Resultado</button>
+
+        <div style="margin-top: 8px;">
+            <button type="submit" class="btn btn-primary">Ver resultado</button>
+        </div>
     </form>
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

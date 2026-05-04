@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar cita — NeuroFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <span class="nav-brand">NeuroFocus</span>
+        <form action="/logout" method="post">
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container-sm">
+    <div style="margin-bottom: 28px;">
+        <h1>Agendar cita</h1>
+        <p class="page-subtitle">
+            Con <span th:text="${psicologo.usuario.nombre}"></span>
+        </p>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <div class="card">
+        <form action="/cita/agendar" method="post">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" name="fecha" required
+                       th:min="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}">
+            </div>
+            <div class="form-group">
+                <label>Hora</label>
+                <input type="time" name="hora" required>
+            </div>
+            <div class="form-group">
+                <label>Modalidad</label>
+                <select name="modalidad" required>
+                    <option value="PRESENCIAL">Presencial</option>
+                    <option value="VIRTUAL">Virtual (videollamada)</option>
+                </select>
+            </div>
+            <div class="flex gap-3" style="margin-top: 4px;">
+                <button type="submit" class="btn btn-primary">Agendar cita</button>
+                <a href="/cita/mis-citas" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>NeuroFocus &mdash; Si estás en crisis llama al 911</p>
+</footer>
+</body>
+</html>
